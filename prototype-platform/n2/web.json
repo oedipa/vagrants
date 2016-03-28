@@ -1,0 +1,7 @@
+{
+    "service": {
+	"name": "web",
+	"tags": ["python"],
+	"port": 80
+    }
+}

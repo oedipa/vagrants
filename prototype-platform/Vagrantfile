@@ -1,0 +1,37 @@
+
+VAGRANTFILE_API_VERSION = "2"
+
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+
+  config.vm.box = "hashicorp/precise64"
+
+  config.vm.define :php do |php|
+    php.vm.hostname = "php"
+    php.vm.network "private_network", ip: "172.20.20.10"
+    php.vm.provision "shell" do |s|
+      s.path = "provision.sh"
+      s.args = ["php", "Y"]
+    end
+  end
+
+  config.vm.define :mysql do |mysql|
+    mysql.vm.hostname = "mysql"
+    mysql.vm.network "private_network", ip: "172.20.20.11"
+    mysql.vm.network "forwarded_port", guest: 8500, host: 8501
+    mysql.vm.provision "shell" do |s|
+      s.path = "provision.sh"
+      s.args = ["mysql", "Y"]
+    end
+  end
+
+  config.vm.define :consul do |n3|
+    n3.vm.hostname = "vault"
+    n3.vm.network "private_network", ip: "172.20.20.13"
+    n3.vm.network "forwarded_port", guest: 8080, host: 8502
+    n3.vm.provision "shell" do |s|
+      s.path = "vault.sh"
+      s.args = ["vault", "Y"]
+    end
+  end
+
+end
