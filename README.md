@@ -1,0 +1,2 @@
+# vagrants
+Experiments with Vagrat
