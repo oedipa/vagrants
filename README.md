@@ -1,4 +1,4 @@
-# lab-restful-flask
+# Vagrant VM with Python and Flask and a shared directory to ease development and learning efforts
 
 This repo demonstrates how to create a simple RESTful service using Python Flask.
 
